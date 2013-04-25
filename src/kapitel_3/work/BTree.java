@@ -151,8 +151,9 @@ public class BTree {
 		Object data = null;                        // breadth-first traversal
 		Queue queue = new Queue();                 // The helper-queue
 		
-		queue.enqueue(root);                       // Enqueue the root-node of the tree
-		  										   // Proceed while the queue is not
+		if (root != null) {
+		    queue.enqueue(root);                   // Enqueue the root-node of the tree
+		}  										   // Proceed while the queue is not
 		while (!queue.empty() && data == null) {   // empty and the data set was not found
 			Node current = (Node) queue.dequeue(); // Fetch a node from the queue
 			if (key.matches(current.data)) {        // Is this the node of the requested
