@@ -31,8 +31,8 @@ public class ListMap {
         list.prepend(map);
     }
     
-    public Object search(Object data) {
-        MapKey mapKey = new MapKey(data);
+    public Object search(Object key) {
+        MapKey mapKey = new MapKey(key);
         Map map = (Map) list.search(mapKey);
         return (map != null) ? map.data : null;
     }
