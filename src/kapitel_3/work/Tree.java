@@ -174,6 +174,10 @@ public class Tree {
 		return data; // Return either null or the reference to the requested data set
 	}
 	
+	public Object search(IKey key) {
+	    return depthFirstPreOrderSearch(key);
+	}
+	
 	protected void removeLeaf(Node toRemove) { // Remove a leaf or a half-leave from
 		if (toRemove.isLeftChild()) {          // the tree.
 			toRemove.parent.left = null;

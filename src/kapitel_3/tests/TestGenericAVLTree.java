@@ -1,6 +1,6 @@
 package kapitel_3.tests;
 
-import kapitel_3.work.generics.AVLTree;
+import kapitel_3.work.experiments.ExperimentalAVLTree;
 import kapitel_3.work.generics.PGFTree;
 import kapitel_3.work.generics.IComparator;
 import kapitel_3.work.generics.IKey;
@@ -9,30 +9,58 @@ public class TestGenericAVLTree {
 	public static void main(String[] args) {
         IComparator<PGFTree<Integer>.PGFProxy> pgfComparator = PGFTree.comparator(new IntegerComparatorGeneric());
 		
-		AVLTree<PGFTree<Integer>.PGFProxy> avlTree = new AVLTree<PGFTree<Integer>.PGFProxy>(pgfComparator);
+		ExperimentalAVLTree<PGFTree<Integer>.PGFProxy> avlTree = new ExperimentalAVLTree<PGFTree<Integer>.PGFProxy>(pgfComparator);
 		PGFTree<Integer> pgfTree = new PGFTree<Integer>(avlTree);
 
 		final int MAX = 15;
+
+        IntegerKeyGeneric integerKey = new IntegerKeyGeneric(0);
+        IKey<PGFTree<Integer>.PGFProxy> key = PGFTree.key(integerKey);
+        
+        System.out.println(pgfTree.header());
+		for (int i = 0; i < MAX; i++) {
+		    System.out.println("\\visible<" + (2 * i + 1) + "> {");
+		    
+		    avlTree.insert(pgfTree.pgfProxy(i));
+		    
+		    integerKey.setKeyValue(i);
+	        PGFTree<Integer>.PGFProxy proxy = avlTree.binarySearch(key);
+	        
+	        PGFTree.setNodeFormat(proxy, "[inserted node]");
+	        PGFTree.setChildFormat(proxy, "[draw=red]");
+	        
+	        System.out.println(pgfTree.tree());
+	        
+		    System.out.println("}");
+		    
+		    avlTree.grown();
+		    
+            System.out.println("\\visible<" + (2 * i + 2) + "> {");
+            
+            System.out.println(pgfTree.tree());
+		    
+            System.out.println("}");
+		    
+            PGFTree.setNodeFormat(proxy, "");
+            PGFTree.setChildFormat(proxy, "");
+		}
+        System.out.println(pgfTree.footer());
+		
 
 //		Random rand = new Random();
 		for (int i = 0; i < MAX; i++) {
 //			int n = rand.nextInt(100000);
 //			System.out.println("Inserting number " + i + ": " + i);
-			avlTree.insert(pgfTree.pgfProxy(i));
+//			avlTree.insert(pgfTree.pgfProxy(i));
 		}
 		
-		IKey<Integer> integerKey = new IntegerKeyGeneric(6);
-		IKey<PGFTree<Integer>.PGFProxy> key = PGFTree.key(integerKey);
 		
-		PGFTree<Integer>.PGFProxy proxy = avlTree.binarySearch(key);
-		PGFTree.setNodeFormat(proxy, "[inserted node]");
-		PGFTree.setChildFormat(proxy, "[draw=red]");
 		
 //		System.out.println("Height: " + avlTree.height());
 //		System.out.println("IsAVLTree: " + avlTree.isAVLTree());
 //		System.out.println("ISBalanced: " + avlTree.isAVLBalanced());
 
-		System.out.println(pgfTree.treeToPGF());
+//		System.out.println(pgfTree.treeToPGF());
 	/*	
 		Object data = null;
 

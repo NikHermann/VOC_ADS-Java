@@ -58,6 +58,10 @@ public class SearchTree extends Tree {
 		return (found != null) ? found.data : null; // Return either null or the data set
 	}
 	
+	public Object search(IKey key) {
+	    return binarySearch(key);
+	}
+	
 	protected Node binarySearch(Node current, Object data) { // Binary search
 		Node found = null;
 		

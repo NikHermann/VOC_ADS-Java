@@ -4,7 +4,7 @@ public class AVLTree<T> extends SearchTree<T> {
     protected static class Node<T> extends Tree.Node<T> { // with an updated Node, storing also
         int balance = 0;                             // a balance, the difference of the
                                                      // height of its sub-trees
-        Node(Node<T> left, T data, Node<T> right) {
+        public Node(Node<T> left, T data, Node<T> right) {
             super(left, data, right);
         }
     }
@@ -120,7 +120,7 @@ public class AVLTree<T> extends SearchTree<T> {
         return newCurrentRoot; // Deliver the new current root
     }
 
-    private void grownTo(Node<T> node) { // Message to all parents that a sub
+    protected void grownTo(Node<T> node) { // Message to all parents that a sub
         Node<T> parent = (Node<T>) node.parent;     // tree indicated by the passed node has
                                               // grown due to the insertion of a new node
         if (parent != null) {                 // Stop at the root (anchor of recursion)
@@ -146,7 +146,7 @@ public class AVLTree<T> extends SearchTree<T> {
         grownTo(newAVLNode);                          // parents
     }
     
-    private void shrunkBy(Node<T> node) {       // Message to all parents that a sub
+    protected void shrunkBy(Node<T> node) {       // Message to all parents that a sub
         Node<T> parent = (Node<T>) node.parent; // tree indicated by the passed node has
                                                 // shrunken due to the removal of a node
         if (parent != null) {                   // Stop at the root (anchor of recursion)

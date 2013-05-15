@@ -3,8 +3,11 @@ package kapitel_3.work.generics;
 public class PGFTree<T> {
     Tree<PGFProxy> tree = null;
     
-    private static final String pgfHeader = "\\begin{tikzpicture}\n" 
-            + "    \\tikzset{\n"
+    private static final String tikzHeader = "% copy verbatim into a fragile frame\n"
+            + "% or \\input this code as pgf-file\n"
+            + "\\begin{tikzpicture}";
+    private static final String tikzFooter = "\\end{tikzpicture}";
+    private static final String pgfStyles = "    \\tikzset{\n"
             + "        every node/.style={\n" 
             + "            inner sep=0,\n"
             + "            outer sep=0,\n"
@@ -36,11 +39,11 @@ public class PGFTree<T> {
             + "        removed node/.style={\n" 
             + "            draw=blue,\n"
             + "            bottom color=blue!20,\n"
-            + "            dash pattern=on 3pt off 3pt\n" 
+            + "            dash pattern=on 3pt off 3pt\n"
             + "        },\n"
-            + "        level distance=0.75cm,\n" 
+            + "        level distance=0.75cm,\n"
             + "        level/.style={\n"
-            + "            sibling distance=3cm/(2^(#1-1))\n" 
+            + "            sibling distance=3cm/(2^(#1-1))\n"
             + "        },\n"
             + "        edge from parent/.style={\n" 
             + "            draw,\n"
@@ -48,8 +51,8 @@ public class PGFTree<T> {
             + "                (\\tikzparentnode) -- (\\tikzchildnode)\n"
             + "            }\n" 
             + "        },\n"
-            + "    }\n";
-    
+            + "    }";
+ 
     private String defaultSubTreeFormat = "";
     private String defaultNodeFormat = "";
     private String defaultChildrenFormat = "";
@@ -217,7 +220,7 @@ public class PGFTree<T> {
     }
     
     protected String treeToPGF(Tree.Node<PGFProxy> currentRoot, String tabs) {
-        String pgfTree = "[missing]\n";
+        String pgfTree = "[missing]";
         
         if (currentRoot != null) {
             PGFProxy proxy = currentRoot.data;
@@ -234,7 +237,7 @@ public class PGFTree<T> {
                             + tabs + "    node" + (nodeFormat != "" ? " " + nodeFormat : "") + " (" + currentRoot.data + ") {" + currentRoot.data + "}\n"
                             + (childrenFormat != "" ? tabs + "    " + childrenFormat + "\n" : "");
             
-            if (!pgfLeftSubTree.equals("[missing]\n") || !pgfRightSubTree.equals("[missing]\n")) {
+            if (!pgfLeftSubTree.equals("[missing]") || !pgfRightSubTree.equals("[missing]")) {
                 pgfTree += tabs + "    child " + pgfLeftSubTree + "\n";
                 pgfTree += tabs + "    child " + pgfRightSubTree + "\n";
             } 
@@ -245,16 +248,20 @@ public class PGFTree<T> {
         return pgfTree;
     }
 
-    public String treeToPGF() {
-        String pgfTree = treeToPGF(tree.root, "    ");
-        pgfTree = pgfHeader 
-                    + "    \\path " + pgfTree + ";\n"
-                    + "\\end{tikzpicture}\n";
-        return pgfTree;
+    public String header() {
+        return tikzHeader + "\n" + pgfStyles;
+    }
+    
+    public String footer() {
+        return tikzFooter;
+    }
+    
+    public String tree() {
+        return "    \\path " + treeToPGF(tree.root, "    ") + ";";
     }
     
     public String toString() {
-        return treeToPGF();
+        return header() + "\n" + tree() + "\n" + footer();
     }
     
     public PGFProxy pgfProxy(T data) {
