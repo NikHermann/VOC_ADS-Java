@@ -45,8 +45,8 @@ public class MySList extends SList {
 		return previousNode != null;
 	}
 	
-	public SList searchAll(IKey key) {
-		SList allList = new SList();
+	public MySList searchAll(IKey key) {
+		MySList allList = new MySList();
 		
 		Node current = head;
 		while(current != null) {

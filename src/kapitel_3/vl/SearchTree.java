@@ -34,8 +34,8 @@ public class SearchTree extends BTree {
 		
 		if (current != null) { // If the sub-tree is not empty
 			if (key.matches(current.data)) { // Look at the root of this sup-tree. Does it
-				found = current;            // contain the requested data set?
-			} else {                        // No? Try to find it in an sub-tree
+				found = current;             // contain the requested data set?
+			} else {                         // No? Try to find it in an sub-tree
 				switch (comparator.compare(current.data, key)) { // Where to search?
 				case 1:                                       // Search on the left
 					found = binarySearch(current.left, key);  // Search to the left

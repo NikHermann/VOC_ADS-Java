@@ -35,7 +35,7 @@ public class DList {
 	}
 	
 	public Object forwardSearch(IKey key) { // Forward search for an object matching
-		Node current = head;               // a given key.
+		Node current = head;                // a given key.
 		
 		while(current != null && !key.matches(current.data)) { // Iterate for all nodes 
 									// in the list but interrupt if the object is found.

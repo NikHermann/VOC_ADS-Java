@@ -1,6 +1,5 @@
 package uebung_2.tests;
 
-import uebung_2.ue.MySList;
 import kapitel_3.tests.Student;
 import kapitel_3.tests.StudentKeys;
 import kapitel_3.vl.IFIterator;
@@ -8,7 +7,7 @@ import kapitel_3.vl.SList;
 
 public class TestSList {
 	public static void main(String[] args) {
-		SList studentList = new MySList();
+		SList studentList = new SList();
 		
 		Student student = new Student("Volker", "Christian", "MTD0100001");
 		studentList.prepend(student);

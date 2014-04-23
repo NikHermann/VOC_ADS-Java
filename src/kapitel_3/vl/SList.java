@@ -18,7 +18,7 @@ public class SList {
 	}
 	
 	public Object search(IKey key) { // Search for an object matching a given key.
-		Node current = head;        // current references one node at a time.
+		Node current = head;         // current references one node at a time.
 		
 		while(current != null && !key.matches(current.data)) {  // Iterate for all nodes 
 			  						// in the list but interrupt if the object is found.
@@ -41,8 +41,8 @@ public class SList {
 		Node prev = null;
 		
 		while(current != null && current.data != data) { // Iterate for all nodes in
-			prev = current;                               // the list as long as a node
-			current = current.next;                       // stores the passed object.
+			prev = current;                              // the list as long as a node
+			current = current.next;                      // stores the passed object.
 		}            // Return null if the list is empty or the searched node is head.
 		return prev; // Return the last node if the searched node is not in the list.
 	}

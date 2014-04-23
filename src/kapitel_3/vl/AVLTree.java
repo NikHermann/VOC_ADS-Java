@@ -119,7 +119,7 @@ public class AVLTree extends SearchTree {         // An AVLTree is a SearchTree
 		return newCurrentRoot; // Deliver the new current root
 	}
 
-	protected void grownTo(AVLNode node) {        // Message to all parents that a sub
+	protected void grownTo(AVLNode node) {      // Message to all parents that a sub
 		AVLNode parent = (AVLNode) node.parent; // tree indicated by the passed node has
 		                                        // grown due to the insertion of a new node
 		if (parent != null) {                   // Stop at the root (anchor of recursion)
@@ -145,7 +145,7 @@ public class AVLTree extends SearchTree {         // An AVLTree is a SearchTree
 		grownTo(newAVLNode);                                // parents
 	}
 	
-	protected void shrunkBy(AVLNode node) {       // Message to all parents that a sub
+	protected void shrunkBy(AVLNode node) {     // Message to all parents that a sub
 		AVLNode parent = (AVLNode) node.parent; // tree indicated by the passed node has
 		                                        // shrunken due to the removal of a node
 		if (parent != null) {                   // Stop at the root (anchor of recursion)

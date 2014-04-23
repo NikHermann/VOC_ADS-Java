@@ -48,6 +48,13 @@ public class TestSorter {
         a = base.clone();
         Sorter.shellSort(a);
         printArray("Shellsort:     ", a);
+        
+        ArrayPlotter ap = new ArrayPlotter(a);
+        ap.beginPlot();
+        ap.beginArray();
+        ap.endArray();
+        ap.plot();
+        System.out.println(ap.endPlot());
     }
 
 }

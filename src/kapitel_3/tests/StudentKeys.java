@@ -9,7 +9,7 @@ public class StudentKeys {
 			this.surName = surName;
 		}
 		public boolean matches(Object data) {
-			return surName == ((Student) data).surName;
+			return surName.equals(((Student) data).surName);
 		}
 	}
 	
@@ -19,7 +19,7 @@ public class StudentKeys {
 			this.matrNr = matrNr;
 		}
 		public boolean matches(Object data) {
-			return matrNr == ((Student) data).matrNr;
+			return matrNr.equals(((Student) data).matrNr);
 		}
 	}
 }

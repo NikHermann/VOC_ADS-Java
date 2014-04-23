@@ -19,7 +19,7 @@ public class TextSearch {
 		while (tIndex <= text.length - pattern.length) {
 			int pIndex = 0;
 			while (pIndex < pattern.length && text[tIndex + pIndex] == pattern[pIndex]) {
-				pIndex ++;
+				pIndex++;
 			}
 			if (pIndex == pattern.length) {
 				return true;
@@ -27,13 +27,5 @@ public class TextSearch {
 			tIndex++;
 		}
 		return false;
-	}
-	
-	public static void main(String[] args) {
-		char[] text = "Hallo, das ist ein Text".toCharArray();
-		char[] pattern = "ext".toCharArray();
-		
-		System.out.println(searchRecursive(text, pattern, 0, 0));
-		System.out.println(searchIterative(text,pattern));
 	}
 }

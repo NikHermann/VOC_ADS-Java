@@ -17,11 +17,11 @@ public class BTree {
 			this.right = right;					          // right child-node
 		}
 		
-		boolean isLeftChild() {
+		public boolean isLeftChild() {
 			return parent != null && parent.left == this;
 		}
 		
-		boolean isRightChild() {
+		public boolean isRightChild() {
 			return parent != null && parent.right == this;
 		}
 	}
