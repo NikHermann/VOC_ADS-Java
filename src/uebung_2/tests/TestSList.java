@@ -1,13 +1,13 @@
 package uebung_2.tests;
 
+import uebung_2.ue.UE2SList;
 import kapitel_3.tests.Student;
 import kapitel_3.tests.StudentKeys;
 import kapitel_3.vl.IFIterator;
-import kapitel_3.vl.SList;
 
 public class TestSList {
 	public static void main(String[] args) {
-		SList studentList = new SList();
+		UE2SList studentList = new UE2SList();
 		
 		Student student = new Student("Volker", "Christian", "MTD0100001");
 		studentList.prepend(student);
@@ -38,7 +38,7 @@ public class TestSList {
 			System.out.println(s);
 		}
 		
-		SList telephoneBook = new SList();
+		UE2SList telephoneBook = new UE2SList();
 		TelephonebookEntry te = new TelephonebookEntry("Volker", "Christian", "Linz");
 		te.addTelnumber("+436764118959");
 		te.addTelnumber("+43664737733");

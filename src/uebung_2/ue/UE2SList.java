@@ -3,7 +3,7 @@ package uebung_2.ue;
 import kapitel_3.vl.IKey;
 import kapitel_3.vl.SList;
 
-public class MySList extends SList {
+public class UE2SList extends SList {
 	protected Node searchForLastNode() {
 		Node current = head;
 		
@@ -45,8 +45,8 @@ public class MySList extends SList {
 		return previousNode != null;
 	}
 	
-	public MySList searchAll(IKey key) {
-		MySList allList = new MySList();
+	public UE2SList searchAll(IKey key) {
+		UE2SList allList = new UE2SList();
 		
 		Node current = head;
 		while(current != null) {

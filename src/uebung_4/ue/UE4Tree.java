@@ -1,8 +1,9 @@
 package uebung_4.ue;
 
+import kapitel_3.work.generics.IKey;
 import kapitel_3.work.generics.Tree;
 
-public class MyTree<T> extends Tree<T> {
+public class UE4Tree<T> extends Tree<T> {
 	private Node<T> current = null;
 
 	protected Node<T> breadthFirstAppend(Node<T> newNode) {
@@ -34,5 +35,37 @@ public class MyTree<T> extends Tree<T> {
 
 	public void insert(T data) {
 		breadthFirstAppend(new Node<T>(null, data, null));	
+	}
+	
+	public void remove(IKey<T> key) {
+	    Node<T> toRemove = depthFirstPreOrderSearch(root, key);
+	    
+	    if (toRemove != null) {
+	        Node<T> current = toRemove;
+	        while (current.left != null) {
+	            current = current.left;
+	        }
+	        toRemove.data = current.data;
+	        this.removeLeaf(current);
+	    }
+	}
+	
+	public void remove(T data) {
+	    class TKey implements IKey<T> {
+	        T data = null;
+	        
+	        TKey(T data) {
+	            this.data = data;
+	        }
+	        
+            public boolean matches(T data) {
+                return this.data == data;
+            }
+	        
+	    }
+	    
+	    TKey key = new TKey(data);
+	    
+	    remove(key);
 	}
 }

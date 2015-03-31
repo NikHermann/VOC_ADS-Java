@@ -2,7 +2,7 @@ package uebung_3.ue;
 
 import kapitel_3.vl.DList;
 
-public class MyDList extends DList {
+public class UE3DList extends DList {
 	protected void insertAfter(Node current, Object data) {		
 		if (current != null) {
 			Node newNode = new Node(current, data, current.next);
