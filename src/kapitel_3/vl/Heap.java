@@ -65,9 +65,7 @@ public abstract class Heap extends BTree {
     }
     
     public void insert(Object data) {
-        Node newNode = new Node(null, data, null);
-        
-        insert(newNode);
+        insert(new Node(null, data, null));
     }
 
     private Node downHeap(Node node) {
@@ -168,6 +166,7 @@ public abstract class Heap extends BTree {
     
     public Object search(IKey key) {
         Node found = heapSearch(root, key);
+        
         return (found != null) ? found.data : null;
     }
     
