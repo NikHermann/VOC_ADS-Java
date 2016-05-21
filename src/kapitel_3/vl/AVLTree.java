@@ -47,7 +47,7 @@ public class AVLTree extends SearchTree {         // An AVLTree is a SearchTree
                 newCurrentRoot = rotateRight(currentRoot); // cases and balance the tree
                 break;                                     // according to the theory
             case +1:
-                rotateLeft((AVLNode) currentRoot.left);
+                rotateLeft(currentRoot.left);
                 newCurrentRoot = rotateRight(currentRoot);
                 break;
             }
@@ -67,7 +67,7 @@ public class AVLTree extends SearchTree {         // An AVLTree is a SearchTree
                 newCurrentRoot = rotateLeft(currentRoot);   // cases and balance the tree
                 break;                                      // according to the theory
             case -1:
-                rotateRight((AVLNode) currentRoot.right);
+                rotateRight(currentRoot.right);
                 newCurrentRoot = rotateLeft(currentRoot);
                 break;
             }
@@ -89,7 +89,7 @@ public class AVLTree extends SearchTree {         // An AVLTree is a SearchTree
         return newCurrentRoot; // Deliver the new current root
     }
     
-    protected void grownTo(AVLNode node) {      // Message to all parents that a sub tree
+    protected void grownBy(AVLNode node) {      // Message to all parents that a sub tree
         AVLNode parent = (AVLNode) node.parent; // indicated by the passed node has grown
                                                 // due to the insertion of a new node. Stop
         if (parent != null) {                   // at the root (anchor of recursion)
@@ -98,10 +98,11 @@ public class AVLTree extends SearchTree {         // An AVLTree is a SearchTree
             } else if (node.isRightChild()) {   // tree has grown
                 parent.balance++;
             }
+            
             if (parent.balance == -2 || parent.balance == +2) { // If the AVL-requirement
                 parent = balance(parent);       // is injured, balance the tree at the
             } else if (parent.balance != 0) {   // current node. If it's not injured, but
-                grownTo(parent);                // the tree has grown, message this to the
+                grownBy(parent);                // the tree has grown, message this to the
             }                                   // parent of the parent
         }
     }
@@ -109,7 +110,7 @@ public class AVLTree extends SearchTree {         // An AVLTree is a SearchTree
     public void insert(Object data) {                       // The overwritten insert-
         AVLNode newAVLNode = new AVLNode(null, data, null); // method reports the growth
         root = insert(root, newAVLNode);                    // of the tree up to the
-        grownTo(newAVLNode);                                // parents
+        grownBy(newAVLNode);                                // parents
     }
     
     protected void shrunkBy(AVLNode node) {     // Message to all parents that a sub-tree
@@ -121,6 +122,7 @@ public class AVLTree extends SearchTree {         // An AVLTree is a SearchTree
             } else if (node.isRightChild()) {   // tree has shrunken
                 parent.balance--;
             }
+            
             if (parent.balance == -2 || parent.balance == +2) { // If the AVL-requirement
                 parent = balance(parent);       // is injured, balance the tree at the
             }                                   // current node.
